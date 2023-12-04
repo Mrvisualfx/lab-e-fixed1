@@ -1,0 +1,53 @@
+### GET list of tasks
+GET {{baseUrl}}/
+Accept: application/json
+
+### GET list of non-comleted tasks
+GET {{baseUrl}}/?completed=false
+Accept: application/json
+
+### GET list of comleted tasks
+GET {{baseUrl}}/?completed=true
+Accept: application/json
+
+### GET list of archived tasks
+GET {{baseUrl}}/?archived=false
+Accept: application/json
+
+### GET list of tasks sorted by ID ASC
+GET {{baseUrl}}/?_sort=id&_order=asc
+Accept: application/json
+
+### GET list of tasks sorted by ID DESC
+GET {{baseUrl}}/?_sort=id&_order=desc
+Accept: application/json
+
+### GET single task
+GET {{baseUrl}}/1
+Accept: application/json
+
+### POST new task
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "title": "Pierwsze zadanie",
+  "deadline": "2022-01-28",
+  "completed": true,
+  "archived": true
+}
+
+### PUT update task
+PUT {{baseUrl}}/3
+Content-Type: application/json
+
+{
+  "title": "Pierwsze zadanie",
+  "deadline": "2022-01-28",
+  "completed": true,
+  "archived": true
+}
+
+#### DELETE task
+#DELETE {{baseUrl}}/3
+#Content-Type: application/json

@@ -1,0 +1,44 @@
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+.tasks .task {
+  background-color: white;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'deadline actions' 'title title';
+  grid-row-gap: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .tasks .task {
+    grid-template-columns: 3fr 1fr auto;
+    grid-template-areas: 'title deadline actions';
+  }
+}
+
+.tasks .task .title {
+  grid-area: title;
+}
+
+.tasks .task .deadline {
+  grid-area: deadline;
+}
+
+.tasks .task .deadline span {
+  padding: 5px;
+  background-color: orange;
+  border-radius: 8px;
+  font-size: 0.8em;
+}
+
+.tasks .task .actions {
+  grid-area: actions;
+  text-align: right;
+}
