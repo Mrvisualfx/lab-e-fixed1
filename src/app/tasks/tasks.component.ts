@@ -3,7 +3,6 @@ import {TasksService} from "../tasks.service";
 import {Task} from "../task";
 import {forkJoin, Observable} from "rxjs";
 
-
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -41,6 +40,7 @@ export class TasksComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
   handleChange(task: Task) {
     this.tasksService.put(task).subscribe({
       error: err => {
@@ -49,6 +49,7 @@ export class TasksComponent implements OnInit {
       }
     });
   }
+
   archiveCompleted() {
     const observables: Observable<any>[] = [];
     for (const task of this.tasks) {
@@ -64,5 +65,22 @@ export class TasksComponent implements OnInit {
     forkJoin(observables).subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  canArchiveCompleted() {
+    for (const task of this.tasks) {
+      if (task.completed) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  canAddTask() {
+    if (this.isProcessing) {
+      return false;
+    }
+
+    return !!this.newTask.title;
   }
 }
